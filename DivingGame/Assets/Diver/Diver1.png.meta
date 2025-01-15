@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7c54363f0aa0b49b1bc742c948c941d6
+guid: a2e92ecd1faf2477f8f4c0f6685840fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5765176681146883395
-    second: Dummy Sardine_0
+      213: -6912453007775493061
+    second: Diver1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,44 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dummy Sardine_0
+      name: Diver1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 94
-        height: 92
+        x: 19
+        y: 349
+        width: 492
+        height: 312
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
-      tessellationDetail: -1
+      physicsShape:
+      - - {x: -16, y: -79}
+        - {x: 46, y: -24}
+        - {x: 146, y: -23}
+        - {x: 180, y: -2}
+        - {x: 209, y: -15}
+        - {x: 218, y: 51}
+        - {x: 176, y: 49}
+        - {x: 142, y: 51}
+        - {x: 143, y: 78}
+        - {x: 188, y: 92}
+        - {x: 175, y: 131}
+        - {x: 136, y: 145}
+        - {x: 107, y: 106}
+        - {x: 73, y: 87}
+        - {x: -23, y: 3}
+        - {x: -83, y: -49}
+        - {x: -155, y: -48}
+        - {x: -156, y: -66}
+        - {x: -150, y: -93}
+        - {x: -150, y: -111}
+        - {x: -55, y: -94}
+      tessellationDetail: 0
       bones: []
-      spriteID: 34d102375a5020050800000000000000
-      internalID: 5765176681146883395
+      spriteID: b3416f8fc980210a0800000000000000
+      internalID: -6912453007775493061
       vertices: []
       indices: 
       edges: []
@@ -138,7 +159,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b2b1239adf07e4ea699386e7903df94c
     internalID: 0
     vertices: []
     indices: 
@@ -147,7 +168,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Diver1_0: -6912453007775493061
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
