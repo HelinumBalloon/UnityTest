@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1922894397812405602}
   m_Layer: 3
   m_Name: Sardine
-  m_TagString: Untagged
+  m_TagString: Sardine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc15d361c7a74586b1d4c916de4d1c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 5226027929392688558}
 --- !u!95 &5226027929392688558
 Animator:
   serializedVersion: 7

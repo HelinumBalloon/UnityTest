@@ -25,7 +25,7 @@ public class SardineSpawnScript : MonoBehaviour
         {
             spawnSardine();
             timer = 0f;
-            minSpawnRate *= 1.01f;
+            minSpawnRate *= 1.001f;
         }
     }
     static int heightRand(int low = -8, int high = 8)
@@ -41,6 +41,6 @@ public class SardineSpawnScript : MonoBehaviour
     IEnumerator SpawnChange()
     {
         yield return new WaitForSeconds(spawnRate);
-        spawnRate = Random.Range(minSpawnRate, 4f);
+        spawnRate = Random.Range(minSpawnRate, 3f);
     }
 }

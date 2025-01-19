@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6132870355184377046}
   m_Layer: 3
   m_Name: Cod
-  m_TagString: Untagged
+  m_TagString: Cod
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06646e29f17c54b12906ab461bea5bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 918312284572626240}
 --- !u!95 &918312284572626240
 Animator:
   serializedVersion: 7
