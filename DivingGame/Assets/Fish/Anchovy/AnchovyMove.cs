@@ -30,7 +30,7 @@ public class AnchovyMove : MonoBehaviour
         {
             transform.position += (Vector3.down * YVelocityCurve.Evaluate(YFactor)) * Time.deltaTime;
         }
-        if (transform.position.x < -20f)
+        if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
         {
             Destroy(gameObject);
         }

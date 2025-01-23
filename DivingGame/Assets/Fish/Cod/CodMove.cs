@@ -5,6 +5,7 @@ public class CodMove : MonoBehaviour
     private GameObject diver;
     private Vector3 direction;
     private int moveSpeed;
+    private int bType;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationCurve YVelocityCurve;
     [SerializeField] private Rigidbody2D codBody;
@@ -14,6 +15,7 @@ public class CodMove : MonoBehaviour
     {
         diver = GameObject.FindGameObjectWithTag("Diver");
         StartCoroutine(SpeedChange());
+        bType = Random.Range(0, 2);
     }
 
     void FixedUpdate()
@@ -21,8 +23,15 @@ public class CodMove : MonoBehaviour
         direction = transform.position - diver.transform.position;
         transform.position += (Vector3.left * moveSpeed) * Time.fixedDeltaTime;
         //Mathf.Min prevents having to account for extremely large ratios in the animation curve
-        codBody.AddForce(-transform.up * YVelocityCurve.Evaluate(Mathf.Min((direction.y/direction.x),10f)) * Time.fixedDeltaTime);
-        if (transform.position.x < -20f)
+        if (bType == 0)
+        {
+            codBody.AddForce(-transform.up * YVelocityCurve.Evaluate(Mathf.Min((direction.y/direction.x),10f)) * Time.fixedDeltaTime);
+        }
+        else
+        {
+            codBody.AddForce(transform.up * YVelocityCurve.Evaluate(Mathf.Min((direction.y/direction.x),10f)) * Time.fixedDeltaTime);
+        }
+        if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
         {
             Destroy(gameObject);
         }

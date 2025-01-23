@@ -23,7 +23,7 @@ public class SardineMove : MonoBehaviour
         float offset = amplitude * Mathf.Sin(Time.time * frequency);
         transform.position += (Vector3.left * scaleFactor * XVelocityCurve.Evaluate(diverVelocity.x)) * Time.fixedDeltaTime;
         transform.position += (Vector3.up * offset) * Time.fixedDeltaTime;
-        if (transform.position.x < -20f)
+        if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
         {
             Destroy(gameObject);
         }
