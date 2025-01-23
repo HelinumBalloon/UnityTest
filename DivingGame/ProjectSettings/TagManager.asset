@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Diver
+  - healthText
   - Sardine
   - Cod
-  - healthText
+  - Anchovy
+  - Herring
   layers:
   - Default
   - TransparentFX

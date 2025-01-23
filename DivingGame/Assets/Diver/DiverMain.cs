@@ -81,10 +81,16 @@ public class DiverMain : MonoBehaviour
                 healthText.loseHealth(1);
                 break;
             case "Cod":
+                TakeDamage(2);
+                healthText.loseHealth(2);
+                break;
+            case "Anchovy":
                 TakeDamage(1);
                 healthText.loseHealth(1);
                 break;
-            default:
+            case "Herring":
+                TakeDamage(1);
+                healthText.loseHealth(1);
                 break;
         }
         StartCoroutine(Invincibility());

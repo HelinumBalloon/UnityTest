@@ -104,6 +104,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5226027929392688558}
+  XVelocityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.05
+      outSlope: 0.05
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 1.25
+      inSlope: 0.11333321
+      outSlope: 0.11333321
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2058826
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 1.5
+      inSlope: 0.0025185444
+      outSlope: 0.0025185444
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.044117548
+    - serializedVersion: 3
+      time: 50
+      value: 2
+      inSlope: 0.0125
+      outSlope: 0.0125
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &5226027929392688558
 Animator:
   serializedVersion: 7

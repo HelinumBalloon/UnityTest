@@ -3,44 +3,28 @@ using System.Collections;
 public class SardineSpawnScript : MonoBehaviour
 {
     public GameObject Sardine;
-
-    private float spawnRate = 3f;
-    private float minSpawnRate = 2f;
-    private float timer = 0f;
+    private int spawnValue;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        spawnSardine();
-        StartCoroutine(SpawnChange());
+        StartCoroutine(SpawnSardine());
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (timer < spawnRate)
-        {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            spawnSardine();
-            timer = 0f;
-            minSpawnRate *= 1.001f;
-        }
-    }
     static int heightRand(int low = -8, int high = 8)
     {
         return Random.Range(low, high);
     }
-    
-    void spawnSardine()
+    IEnumerator SpawnSardine()
     {
-        Instantiate(Sardine, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
-    }
-
-    IEnumerator SpawnChange()
-    {
-        yield return new WaitForSeconds(spawnRate);
-        spawnRate = Random.Range(minSpawnRate, 3f);
+        while (true)
+        {
+            spawnValue = Random.Range(1, 5);
+            if (spawnValue == 1)
+            {
+                Instantiate(Sardine, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
+            }
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

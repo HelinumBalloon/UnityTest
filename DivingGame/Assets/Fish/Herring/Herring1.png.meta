@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 38a99b2e5dec64e8a9d5b90246074978
+guid: d399f38ee840041a9b197473b1760cf4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3146128711015707241
-    second: Anchovy0_0
+      213: -3228045217026000764
+    second: Herring1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,36 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Anchovy0_0
+      name: Herring1_0
       rect:
         serializedVersion: 2
-        x: 309
-        y: 509
-        width: 432
-        height: 212
+        x: 299
+        y: 519
+        width: 412
+        height: 192
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape:
-      - - {x: 201, y: -88}
-        - {x: 175, y: -2}
-        - {x: 216, y: 100}
-        - {x: 170, y: 13}
-        - {x: 122, y: 7}
-        - {x: 46, y: 36}
-        - {x: -17, y: 76}
-        - {x: -53, y: 46}
-        - {x: -133, y: 35}
-        - {x: -202, y: -7}
-        - {x: -118, y: -51}
-        - {x: 9, y: -56}
-        - {x: 156, y: -5}
-      tessellationDetail: 0
+      physicsShape: []
+      tessellationDetail: -1
       bones: []
-      spriteID: 962bfbdc46b49ab20800000000000000
-      internalID: 3146128711015707241
+      spriteID: 48834406afda333d0800000000000000
+      internalID: -3228045217026000764
       vertices: []
       indices: 
       edges: []
@@ -151,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9e435006730594d42948a5a0feb96680
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Anchovy0_0: 3146128711015707241
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
