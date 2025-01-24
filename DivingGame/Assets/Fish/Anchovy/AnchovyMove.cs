@@ -21,14 +21,14 @@ public class AnchovyMove : MonoBehaviour
         distance = Vector3.Distance(transform.position, diver.transform.position);
         diverVelocity = diver.GetComponent<Rigidbody2D>().linearVelocity;
         YFactor = distance/(diverVelocity.y + 1f);
-        transform.position += (Vector3.left * XVelocityCurve.Evaluate(distance)) * Time.deltaTime;
+        transform.position += (Vector3.left * XVelocityCurve.Evaluate(distance)) * Time.fixedDeltaTime;
         if (bType == 0)
         {
-            transform.position += (Vector3.up * YVelocityCurve.Evaluate(YFactor)) * Time.deltaTime;
+            transform.position += (Vector3.up * YVelocityCurve.Evaluate(YFactor)) * Time.fixedDeltaTime;
         }
         else
         {
-            transform.position += (Vector3.down * YVelocityCurve.Evaluate(YFactor)) * Time.deltaTime;
+            transform.position += (Vector3.down * YVelocityCurve.Evaluate(YFactor)) * Time.fixedDeltaTime;
         }
         if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
         {

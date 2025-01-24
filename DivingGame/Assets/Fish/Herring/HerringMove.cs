@@ -1,35 +1,55 @@
 using UnityEngine;
-
+using System.Collections;
 public class HerringMove : MonoBehaviour
 {
-    private int behaviourType;
-    private int scaleFactor;
-
+    private GameObject diver;
+    private float distance;
+    private int bType;
+    private float YBenchmark;
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimationCurve XVelocityCurve;
+    [SerializeField] private AnimationCurve YVelocityCurve;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        behaviourType = Random.Range(0, 5);
+        diver = GameObject.FindGameObjectWithTag("Diver");
+        bType = Random.Range(0, 2);
     }
     void FixedUpdate()
     {
-        scaleFactor = Random.Range(5, 10);
-        if (behaviourType < 3)
+        distance = Vector3.Distance(transform.position, diver.transform.position);
+        transform.position += (Vector3.left * XVelocityCurve.Evaluate(distance)) * Time.fixedDeltaTime;
+        if (distance < 5f)
         {
-            transform.position += (Vector3.left * scaleFactor) * Time.fixedDeltaTime;
+            StartCoroutine(YMovement());
         }
-        else if (behaviourType == 3)
+        if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
         {
-            float offset = scaleFactor * Mathf.Sin(Time.time * scaleFactor);
-            transform.position += (Vector3.left * scaleFactor + Vector3.up * offset) * Time.fixedDeltaTime;
+            Destroy(gameObject);
         }
-        else if (behaviourType == 4)
+    }
+
+    IEnumerator YMovement()
+    {
+        YBenchmark = Random.Range(0f, 0.75f);
+        if (bType == 0)
         {
-            
+            transform.position += (Vector3.up * YVelocityCurve.Evaluate(YBenchmark+Time.fixedDeltaTime));
         }
         else
         {
-            
+            transform.position += (Vector3.down * YVelocityCurve.Evaluate(YBenchmark+Time.fixedDeltaTime));
         }
+        yield return new WaitForSeconds(0.25f);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StartCoroutine(Explosion());
+    }
+    IEnumerator Explosion()
+    {
+        animator.SetBool("Alive", false);
+        yield return new WaitForSeconds(0.6f);
+        Destroy(gameObject);
     }
 }
