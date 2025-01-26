@@ -1,46 +1,59 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 public class HerringMove : MonoBehaviour
 {
     private GameObject diver;
+    private float scaleFactor;
     private float distance;
-    private int bType;
-    private float YBenchmark;
+    private float amplitude;
+    private int frequency;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationCurve XVelocityCurve;
-    [SerializeField] private AnimationCurve YVelocityCurve;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         diver = GameObject.FindGameObjectWithTag("Diver");
-        bType = Random.Range(0, 2);
+        amplitude = Random.Range(1f, 2.5f);
+        frequency = Random.Range(2, 6);
+        StartCoroutine(PredatorCheck());
+        scaleFactor = 1f;
     }
     void FixedUpdate()
     {
         distance = Vector3.Distance(transform.position, diver.transform.position);
-        transform.position += (Vector3.left * XVelocityCurve.Evaluate(distance)) * Time.fixedDeltaTime;
-        if (distance < 5f)
-        {
-            StartCoroutine(YMovement());
-        }
+        float offset = amplitude * Mathf.Sin(Time.time * frequency);
+        transform.position += (Vector3.left * scaleFactor * XVelocityCurve.Evaluate(distance)) * Time.fixedDeltaTime;
+        transform.position += (Vector3.up * offset) * Time.fixedDeltaTime;
         if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
         {
             Destroy(gameObject);
         }
     }
 
-    IEnumerator YMovement()
+    IEnumerator PredatorCheck()
     {
-        YBenchmark = Random.Range(0f, 0.75f);
-        if (bType == 0)
+        while (true)
         {
-            transform.position += (Vector3.up * YVelocityCurve.Evaluate(YBenchmark+Time.fixedDeltaTime));
+            GameObject[] predatorList = GameObject.FindGameObjectsWithTag("BasicPredator");
+            if (predatorList.Length > 0)
+            {
+                List<float> predatorDistances = new List<float>();
+                foreach (GameObject predator in predatorList)
+                {
+                    float predatorDistance = Vector3.Distance(predator.transform.position, transform.position);
+                    predatorDistances.Add(predatorDistance);
+                }
+                float minPredatorDistance = Mathf.Min(predatorDistances.ToArray());
+                if (minPredatorDistance < 10f)
+                {
+                    scaleFactor *= 1.3f;
+                    yield return new WaitForSeconds(1f);
+                    scaleFactor /= 1.3f;
+                }
+            }
+            yield return new WaitForSeconds(1f);
         }
-        else
-        {
-            transform.position += (Vector3.down * YVelocityCurve.Evaluate(YBenchmark+Time.fixedDeltaTime));
-        }
-        yield return new WaitForSeconds(0.25f);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

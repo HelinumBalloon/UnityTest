@@ -1,10 +1,11 @@
 using UnityEngine;
 // For coroutine use.
 using System.Collections;
+using System.Collections.Generic;
 public class SardineMove : MonoBehaviour
 {
     private Vector3 diverVelocity;
-    private int scaleFactor;
+    private float scaleFactor;
     private float frequency = 5f;
     private float amplitude = 2f;
     [SerializeField] private Animator animator;
@@ -14,6 +15,7 @@ public class SardineMove : MonoBehaviour
     void Start()
     {
         scaleFactor = Random.Range(3, 8);
+        StartCoroutine(PredatorCheck());
     }
 
     // Update is called once per frame
@@ -26,6 +28,29 @@ public class SardineMove : MonoBehaviour
         if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
         {
             Destroy(gameObject);
+        }
+    }
+    IEnumerator PredatorCheck()
+    {
+        while (true)
+        {
+            GameObject[] predatorList = GameObject.FindGameObjectsWithTag("BasicPredator");
+            if (predatorList.Length > 0)
+            {
+                List<float> predatorDistances = new List<float>();
+                foreach (GameObject predator in predatorList)
+                {
+                    float predatorDistance = Vector3.Distance(predator.transform.position, transform.position);
+                    predatorDistances.Add(predatorDistance);
+                }
+                float minPredatorDistance = Mathf.Min(predatorDistances.ToArray());
+                if (minPredatorDistance < 5f)
+                {
+                    scaleFactor *= 1.2f;
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
         }
     }
     

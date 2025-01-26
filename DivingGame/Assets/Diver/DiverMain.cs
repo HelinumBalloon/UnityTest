@@ -75,22 +75,14 @@ public class DiverMain : MonoBehaviour
     {
         switch (collision.gameObject.tag)
         {
-            case "Sardine":
+            case "BasicPrey":
                 TakeDamage(1);
                 // break necessary to exit switch statement
                 healthText.loseHealth(1);
                 break;
-            case "Cod":
+            case "BasicPredator":
                 TakeDamage(2);
                 healthText.loseHealth(2);
-                break;
-            case "Anchovy":
-                TakeDamage(1);
-                healthText.loseHealth(1);
-                break;
-            case "Herring":
-                TakeDamage(1);
-                healthText.loseHealth(1);
                 break;
         }
         StartCoroutine(Invincibility());

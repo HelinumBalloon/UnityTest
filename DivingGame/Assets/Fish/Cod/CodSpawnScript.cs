@@ -17,7 +17,7 @@ public class CodSpawnScript : MonoBehaviour
     {
         while (true)
         {
-            spawnValue = Random.Range(1, 5);
+            spawnValue = Random.Range(1, 7);
             if (spawnValue == 1)
             {
                 Instantiate(Cod, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
