@@ -44,9 +44,9 @@ public class SardineMove : MonoBehaviour
                     predatorDistances.Add(predatorDistance);
                 }
                 float minPredatorDistance = Mathf.Min(predatorDistances.ToArray());
-                if (minPredatorDistance < 5f)
+                if (minPredatorDistance < 8f)
                 {
-                    scaleFactor *= 1.2f;
+                    scaleFactor *= 1.3f;
                 }
             }
 

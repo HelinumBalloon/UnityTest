@@ -47,9 +47,9 @@ public class HerringMove : MonoBehaviour
                 float minPredatorDistance = Mathf.Min(predatorDistances.ToArray());
                 if (minPredatorDistance < 10f)
                 {
-                    scaleFactor *= 1.3f;
+                    scaleFactor *= 1.4f;
                     yield return new WaitForSeconds(1f);
-                    scaleFactor /= 1.3f;
+                    scaleFactor /= 1.4f;
                 }
             }
             yield return new WaitForSeconds(1f);

@@ -19,14 +19,25 @@ public class TunaMove : MonoBehaviour
     {
         direction = transform.position - diver.transform.position;
         transform.position += (Vector3.left * moveSpeed) * Time.fixedDeltaTime;
-        tunaBody.linearVelocity = Vector3.up * YVelocityCurve.Evaluate(direction.y);
     }
     IEnumerator SpeedChange()
     {
         while (true)
         {
-            moveSpeed = Random.Range(10, 15);
+            moveSpeed = Random.Range(15, 20);
+			tunaBody.linearVelocity = Vector3.up * YVelocityCurve.Evaluate(direction.y);
             yield return new WaitForSeconds(0.5f);
         }
+    }
+	private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StartCoroutine(Explosion());
+    }
+
+    IEnumerator Explosion()
+    {
+        animator.SetBool("Alive", false);
+        yield return new WaitForSeconds(0.6f);
+        Destroy(gameObject);
     }
 }

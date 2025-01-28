@@ -611,15 +611,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: -13
       value: 0
-      inSlope: -0.24
-      outSlope: -0.24
+      inSlope: -0.12
+      outSlope: -0.12
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: -0.5
-      value: -3
+      value: -1.5
       inSlope: 0.832275
       outSlope: 0.832275
       tangentMode: 0
@@ -628,7 +628,7 @@ MonoBehaviour:
       outWeight: 1
     - serializedVersion: 3
       time: 0.5
-      value: 2
+      value: 1
       inSlope: 0.25056475
       outSlope: 0.25056475
       tangentMode: 0
@@ -638,8 +638,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 13
       value: 0
-      inSlope: -0.16
-      outSlope: -0.16
+      inSlope: -0.08
+      outSlope: -0.08
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -780,6 +780,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1323702656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1323702657}
+  - component: {fileID: 1323702658}
+  m_Layer: 0
+  m_Name: TunaSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1323702657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323702656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1323702658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323702656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87e43d558130e4c36b2bfef8f65baeac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1485140045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1835,3 +1879,4 @@ SceneRoots:
   - {fileID: 128531494}
   - {fileID: 1526742261}
   - {fileID: 796509532}
+  - {fileID: 1323702657}
