@@ -40,7 +40,7 @@ public class CodMove : MonoBehaviour
     {
         while (true)
         {
-            moveSpeed = Random.Range(4, 7);
+            moveSpeed = Random.Range(5, 9);
             yield return new WaitForSeconds(0.5f);
         }
     }

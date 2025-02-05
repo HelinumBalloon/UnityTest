@@ -25,7 +25,7 @@ public class HerringSpawnScript : MonoBehaviour
             spawnValue = Random.Range(1, 10);
             if (spawnValue == 1)
             {
-                groupSize = Random.Range(3, 9);
+                groupSize = Random.Range(2, 8);
                 for (int i = 0; i < groupSize; i++)
                 {
                     Instantiate(Herring, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);

@@ -14,7 +14,7 @@ public class SardineMove : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        scaleFactor = Random.Range(3, 8);
+        scaleFactor = Random.Range(4, 8);
         StartCoroutine(PredatorCheck());
     }
 

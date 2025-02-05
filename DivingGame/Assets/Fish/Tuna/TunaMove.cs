@@ -19,12 +19,16 @@ public class TunaMove : MonoBehaviour
     {
         direction = transform.position - diver.transform.position;
         transform.position += (Vector3.left * moveSpeed) * Time.fixedDeltaTime;
+		if (transform.position.x < -20f || Mathf.Abs(transform.position.y) > 15f)
+        {
+            Destroy(gameObject);
+        }
     }
     IEnumerator SpeedChange()
     {
         while (true)
         {
-            moveSpeed = Random.Range(15, 20);
+            moveSpeed = Random.Range(12, 20);
 			tunaBody.linearVelocity = Vector3.up * YVelocityCurve.Evaluate(direction.y);
             yield return new WaitForSeconds(0.5f);
         }
