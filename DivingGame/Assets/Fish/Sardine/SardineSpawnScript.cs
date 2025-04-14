@@ -22,7 +22,9 @@ public class SardineSpawnScript : MonoBehaviour
             spawnValue = Random.Range(1, 5);
             if (spawnValue == 1)
             {
-                Instantiate(Sardine, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
+                GameObject newSardine = Instantiate(Sardine, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
+                float scale = 0.4f + Random.Range(0, 10) * 0.02f;
+                newSardine.transform.localScale = new Vector3(scale, scale, 1f);
             }
             yield return new WaitForSeconds(1f);
         }

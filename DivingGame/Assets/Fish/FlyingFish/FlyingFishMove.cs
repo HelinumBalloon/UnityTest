@@ -5,6 +5,7 @@ public class FlyingFishMove : MonoBehaviour
     private int scaleFactor;
     private float amplitude;
     private float frequency;
+    private bool isFrozen;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationCurve FlyVelocityCurve;
     [SerializeField] private Rigidbody2D flyingFishBody;
@@ -14,10 +15,15 @@ public class FlyingFishMove : MonoBehaviour
         amplitude = 20f / transform.position.y;
         frequency = Mathf.Sqrt(transform.position.y);
         StartCoroutine(PredatorCheck());
+        flyingFishBody = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
+        if (isFrozen)
+        {
+            return;
+        }
         float offset = amplitude * Mathf.Sin(Time.time * frequency);
         transform.position += (Vector3.left * scaleFactor) * Time.fixedDeltaTime;
         transform.position += (Vector3.up * (offset + scaleFactor/10f)) * Time.fixedDeltaTime;
@@ -43,6 +49,8 @@ public class FlyingFishMove : MonoBehaviour
     }
     IEnumerator Explosion()
     {
+        isFrozen = true;
+        flyingFishBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("Alive", false);
         yield return new WaitForSeconds(0.6f);
         Destroy(gameObject);

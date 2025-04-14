@@ -8,7 +8,7 @@ TagManager:
   - healthText
   - BasicPredator
   - BasicPrey
-  - Anchovy
+  - Sturgeon
   layers:
   - Default
   - TransparentFX

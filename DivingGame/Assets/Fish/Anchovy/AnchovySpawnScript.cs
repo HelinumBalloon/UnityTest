@@ -22,7 +22,9 @@ public class AnchovySpawnScript : MonoBehaviour
             spawnValue = Random.Range(1, 5);
             if (spawnValue == 1)
             {
-                Instantiate(Anchovy, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
+                GameObject newAnchovy = Instantiate(Anchovy, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
+				float scale = 0.72f + Random.Range(0, 7) * 0.01f;
+                newAnchovy.transform.localScale = new Vector3(scale, scale, 1f);
             }
             yield return new WaitForSeconds(1f);
         }

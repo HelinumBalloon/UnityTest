@@ -20,7 +20,9 @@ public class CodSpawnScript : MonoBehaviour
             spawnValue = Random.Range(1, 7);
             if (spawnValue == 1)
             {
-                Instantiate(Cod, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
+                GameObject newCod = Instantiate(Cod, new Vector3(transform.position.x, heightRand(), 0), transform.rotation);
+                float scale = 0.38f + Random.Range(0, 5) * 0.01f;
+                newCod.transform.localScale = new Vector3(scale, scale, 1f);
             }
             yield return new WaitForSeconds(1f);
         }

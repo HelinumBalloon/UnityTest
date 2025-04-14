@@ -8,6 +8,8 @@ public class SardineMove : MonoBehaviour
     private float scaleFactor;
     private float frequency = 5f;
     private float amplitude = 2f;
+	public Rigidbody2D sardineBody;
+	private bool isFrozen;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationCurve XVelocityCurve;
     
@@ -16,11 +18,16 @@ public class SardineMove : MonoBehaviour
     {
         scaleFactor = Random.Range(4, 8);
         StartCoroutine(PredatorCheck());
+		sardineBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+		if (isFrozen)
+		{
+			return;
+		}
         diverVelocity = GameObject.FindGameObjectWithTag("Diver").GetComponent<Rigidbody2D>().linearVelocity;
         float offset = amplitude * Mathf.Sin(Time.time * frequency);
         transform.position += (Vector3.left * scaleFactor * XVelocityCurve.Evaluate(diverVelocity.x)) * Time.fixedDeltaTime;
@@ -60,6 +67,8 @@ public class SardineMove : MonoBehaviour
     }
     IEnumerator Explosion()
     {
+		isFrozen = true;
+		sardineBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("Alive", false);
         // slightly longer waittime than animation time to play all
         yield return new WaitForSeconds(0.6f);

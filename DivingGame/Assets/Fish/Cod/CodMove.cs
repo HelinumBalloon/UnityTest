@@ -6,9 +6,10 @@ public class CodMove : MonoBehaviour
     private Vector3 direction;
     private int moveSpeed;
     private int bType;
+	private bool isFrozen;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationCurve YVelocityCurve;
-    [SerializeField] private Rigidbody2D codBody;
+    public Rigidbody2D codBody;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,10 +17,15 @@ public class CodMove : MonoBehaviour
         diver = GameObject.FindGameObjectWithTag("Diver");
         StartCoroutine(SpeedChange());
         bType = Random.Range(0, 2);
+		codBody = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
+		if (isFrozen)
+        {
+            return;
+        }
         direction = transform.position - diver.transform.position;
         transform.position += (Vector3.left * moveSpeed) * Time.fixedDeltaTime;
         //Mathf.Min prevents having to account for extremely large ratios in the animation curve
@@ -50,6 +56,8 @@ public class CodMove : MonoBehaviour
     }
     IEnumerator Explosion()
     {
+		isFrozen = true;
+        codBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("Alive", false);
         yield return new WaitForSeconds(0.6f);
         Destroy(gameObject);

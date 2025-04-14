@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6d30f9eb99144fd93eab0086cab879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  herringBody: {fileID: 4843586494608170843}
   animator: {fileID: 5733655377057252721}
   XVelocityCurve:
     serializedVersion: 2

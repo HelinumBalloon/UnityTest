@@ -7,6 +7,8 @@ public class AnchovyMove : MonoBehaviour
     private float distance;
     private float YFactor;
     private int bType;
+    private bool isFrozen;
+    public Rigidbody2D anchovyBody;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationCurve XVelocityCurve;
     [SerializeField] private AnimationCurve YVelocityCurve;
@@ -15,9 +17,15 @@ public class AnchovyMove : MonoBehaviour
     {
         diver = GameObject.FindGameObjectWithTag("Diver");
         bType = Random.Range(0, 2);
+        anchovyBody = GetComponent<Rigidbody2D>();
+        isFrozen = false;
     }
     void FixedUpdate()
     {
+        if (isFrozen)
+        {
+            return;
+        }
         distance = Vector3.Distance(transform.position, diver.transform.position);
         diverVelocity = diver.GetComponent<Rigidbody2D>().linearVelocity;
         YFactor = distance/(diverVelocity.y + 1f);
@@ -41,6 +49,8 @@ public class AnchovyMove : MonoBehaviour
     }
     IEnumerator Explosion()
     {
+        isFrozen = true;
+        anchovyBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("Alive", false);
         // slightly longer waittime than animation time to play all
         yield return new WaitForSeconds(0.6f);

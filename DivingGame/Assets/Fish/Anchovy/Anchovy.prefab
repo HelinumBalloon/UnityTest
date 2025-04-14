@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b7c297fdb08462c9911b07b787d46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anchovyBody: {fileID: 60359470307516501}
   animator: {fileID: 8018779353044436834}
   XVelocityCurve:
     serializedVersion: 2

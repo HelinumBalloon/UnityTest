@@ -6,6 +6,7 @@ public class DiverMain : MonoBehaviour
     public int currentHealth = 100;
     public HealthBar healthBar;
     public Rigidbody2D myRigidbody;
+	private RigidbodyConstraints2D initialConstraints;
     public SpriteRenderer sprite;
     private Color color;
     //"HealthTextScript" must be 一字不錯 for unity to find properly
@@ -19,12 +20,15 @@ public class DiverMain : MonoBehaviour
     private bool isAPressed = false;
     private bool isSPressed = false;
     private bool isDPressed = false;
+	[SerializeField] private Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         myRigidbody = GetComponent<Rigidbody2D>();
+		initialConstraints = myRigidbody.constraints;
         sprite = GetComponent<SpriteRenderer>();
         color = sprite.material.color;
         // to execute visible score change on health text from diver script
@@ -79,14 +83,22 @@ public class DiverMain : MonoBehaviour
                 TakeDamage(1);
                 // break necessary to exit switch statement
                 healthText.loseHealth(1);
+        		StartCoroutine(Blink());
+				StartCoroutine(Invincibility());
                 break;
             case "BasicPredator":
                 TakeDamage(2);
                 healthText.loseHealth(2);
+        		StartCoroutine(Blink());
+				StartCoroutine(Invincibility());
                 break;
+			case "Sturgeon":
+				TakeDamage(10);
+				healthText.loseHealth(10);
+				StartCoroutine(SturgeonFreeze());
+				StartCoroutine(Invincibility());
+				break;
         }
-        StartCoroutine(Invincibility());
-        StartCoroutine(Blink());
     }
 
     IEnumerator Invincibility()
@@ -108,6 +120,21 @@ public class DiverMain : MonoBehaviour
         sprite.material.color = new Color(color.r, color.g, color.b, color.a);
         yield return new WaitForSeconds(0.25f);
     }
+
+	IEnumerator SturgeonFreeze()
+	{
+		myRigidbody.AddForce((-transform.right * myRigidbody.linearVelocity * 5f) * Time.fixedDeltaTime, ForceMode2D.Impulse);
+		yield return new WaitForSeconds(0.5f);
+		sprite.material.color = new Color(color.r * 0.5f, color.g * 0.5f, color.b, color.a);
+		diverIsAlive = false;
+		animator.SetBool("diverIsFrozen", true);
+		myRigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        yield return new WaitForSeconds(6f);
+		sprite.material.color = new Color(color.r, color.g, color.b, color.a);
+		diverIsAlive = true;
+		animator.SetBool("diverIsFrozen", false);
+		myRigidbody.constraints = initialConstraints;
+	}
     void TakeDamage(int amount)
     {
         currentHealth -= amount;

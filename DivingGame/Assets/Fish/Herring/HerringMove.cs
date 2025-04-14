@@ -8,6 +8,8 @@ public class HerringMove : MonoBehaviour
     private float distance;
     private float amplitude;
     private int frequency;
+	private bool isFrozen;
+	public Rigidbody2D herringBody;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimationCurve XVelocityCurve;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,9 +20,14 @@ public class HerringMove : MonoBehaviour
         frequency = Random.Range(2, 6);
         StartCoroutine(PredatorCheck());
         scaleFactor = 1f;
+		herringBody = GetComponent<Rigidbody2D>();
     }
     void FixedUpdate()
     {
+		if (isFrozen)
+		{
+			return;
+		}
         distance = Vector3.Distance(transform.position, diver.transform.position);
         float offset = amplitude * Mathf.Sin(Time.time * frequency);
         transform.position += (Vector3.left * scaleFactor * XVelocityCurve.Evaluate(distance)) * Time.fixedDeltaTime;
@@ -61,6 +68,8 @@ public class HerringMove : MonoBehaviour
     }
     IEnumerator Explosion()
     {
+		isFrozen = true;
+		herringBody.constraints = RigidbodyConstraints2D.FreezeAll;
         animator.SetBool("Alive", false);
         yield return new WaitForSeconds(0.6f);
         Destroy(gameObject);
